@@ -183,7 +183,7 @@ function init(){
             ],
             "choices": [
              {
-              "value": "easter",
+              "value": "eastern",
               "text": "Eastern"
              },
              {
@@ -207,7 +207,7 @@ function init(){
        };
 
     function getHoursWorked(params) {
-        requestTimes = params[0]
+        requestTimes = params[0];
         workedHours = 0;
 
         if(!Array.isArray(requestTimes)){
@@ -228,36 +228,36 @@ function init(){
             }
         }
 
-        return workedHours
+        return Number(workedHours.toFixed(2));
     }
 
     function elapsedHours(start, end){
         hours = 0;
         try{
-            let t1 = Date.parse("01 Jan 1970 " + start) 
-            let t2 = Date.parse("01 Jan 1970 " + end) 
+            let t1 = Date.parse("01 Jan 1970 " + start);
+            let t2 = Date.parse("01 Jan 1970 " + end);
 
             if(t1 >= t2) return hours;
 
-            return Number(((t2 - t1)/3600000).toFixed(2))
+            return Number(((t2 - t1)/3600000).toFixed(2));
         }
         catch(e){ }
 
-        return hours
+        return hours;
     }
 
     function validatePunches(_, options) {
         if (options.name === "timecard_edit"){
             if(isPunchOverlap(options.value)){
-                options.error = "Punch values overlap"
+                options.error = "Punch values overlap";
             }
 
-            return
+            return;
         }
       }
 
     function isPunchOverlap(requests){
-        punches = []
+        punches = [];
 
         for(let request of requests){
             if(isValidTimecardRequest(request) &&
